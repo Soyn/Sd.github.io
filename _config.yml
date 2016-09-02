@@ -69,5 +69,5 @@ theme: Daily1
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/Soyn/Soyn.github.io.git
+  repo: https://github.com:Soyn/Soyn.github.io.git
   branch: master
