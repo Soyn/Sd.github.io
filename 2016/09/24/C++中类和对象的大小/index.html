@@ -165,7 +165,7 @@
 <li><strong>在需要字节对齐的时候，编译器会插入多余的字节，按照4个字节对齐，若有虚函数，按照8个字节对齐</strong></li>
 <li><strong>类中的非虚函数的添加或者删除不会影响类和对象的大小（若一开始无虚函数，添加虚函数后会增加虚指针，这时候会影响类和对象的大小）</strong></li>
 <li><strong>一个空的类的大小是1（即使是空的类也可以实例化，编译器会为其插入一个字节）</strong></li>
-<li><strong>类中的函数存在可执行文件的代码段（该类的所有实例共享代码段，不同的实例不同的只是数据成员，<br>  从这里面的设计也可以得知成员函数的添加或者删除是不会影响类和对象和大小）</strong></li>
+<li><strong>类中的函数存储在可执行文件的代码段（该类的所有实例共享代码段，不同的实例不同的只是数据成员，从这里面的设计也可以得知成员函数的添加或者删除是不会影响类和对象和大小）</strong></li>
 </ul>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a><strong>Reference</strong>:</h2><p><a href="http://stackoverflow.com/questions/14347184/c-member-function-and-class-size" target="_blank" rel="external">c++ member function and class size [duplicate]</a><br><a href="http://stackoverflow.com/questions/1501859/why-size-of-class-with-a-member-function-is-1-byte-while-member-function-is-4-b" target="_blank" rel="external">Why Size of Class with a member function is 1 byte..While member function is 4 bytes</a></p>
