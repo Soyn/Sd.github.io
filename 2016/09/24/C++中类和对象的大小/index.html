@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="C++中类和对象的大小"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>C++中类和对象的大小 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            C++中类和对象的大小
+            
+          </h1>
+          <p class="posted-on">
+          2016-09-24
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>&ensp;&ensp;前几天笔试遇到一道题，问题是如果像一个类中新增加一个函数，问该类和该类的对象大小会有什么变化，以前还没有注意这个问题，当时凭着自己的思路答了一下，最后回学校写了程序实验了一下。</p>
+<p>&ensp;&ensp;首先我们定义一个只包含一个函数的类：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*********************************************</span></div><div class="line">* @Author: WangYao</div><div class="line">* @filename: class_with_single_function.cc</div><div class="line">* @Brief: Define a class with single function.</div><div class="line">*********************************************/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">class</span> ClassWithSingleFunction&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Func</span><span class="params">()</span></span>&#123;<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm Func()."</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></div><div class="line">&#123;</div><div class="line">  ClassWithSingleFunction obj;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithSingleFunction's object is: "</span> &lt;&lt;</div><div class="line">    <span class="keyword">sizeof</span>(obj) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithSingleFunction is: "</span> &lt;&lt;</div><div class="line">    <span class="keyword">sizeof</span>(ClassWithSingleFunction) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&ensp;&ensp;运行结果为:</p>
+<p><img src="http://octh00z8u.bkt.clouddn.com/1.png" alt="image"></p>
+<p>&ensp;&ensp;让我们再来看看另一段代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*********************************************</span></div><div class="line">* @Author: WangYao</div><div class="line">* @filename: class_with_data_member.cc</div><div class="line">* @Brief: Define a class with single function.</div><div class="line">*********************************************/</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">class</span> ClassWithDataMember&#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  <span class="keyword">int</span> val;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></div><div class="line">&#123;</div><div class="line">  ClassWithDataMember obj;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithDataMember's object is: "</span></div><div class="line">    &lt;&lt; <span class="keyword">sizeof</span>(obj) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithDataMember is: "</span> &lt;&lt;</div><div class="line">    <span class="keyword">sizeof</span>(ClassWithDataMember) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&ensp;&ensp;运行的结果为：</p>
+<p><img src="http://octh00z8u.bkt.clouddn.com/2.png" alt="image"></p>
+<p>&ensp;&ensp;我们再给这个类加上一个成员函数，从class_with_single_function.cc的输出结果我们可以推测，我们的结果应该是5，如果考虑内存对齐，那么我推测的结果应该是8，让我们来看看运行结果：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/*********************************************</div><div class="line">* @Author: WangYao</div><div class="line">* @Filename: class_with_data_member_and_function.cc</div><div class="line">* @Brief: Define a class with single function.</div><div class="line">* ********************************************/</div><div class="line"></div><div class="line">#include &lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line">class ClassWithDataMemberAndFuncton&#123;</div><div class="line">public:</div><div class="line">    void Func()&#123;cout &lt;&lt; "I'm Func() from</div><div class="line">        ClassWithDataMemberAndFuncton " &lt;&lt; endl;&#125;</div><div class="line">private:</div><div class="line">    int val;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main(int argc, char **argv)</div><div class="line">&#123;</div><div class="line">  ClassWithDataMemberAndFuncton obj;</div><div class="line">  cout &lt;&lt; "The size of ClassWithDataMemberAndFuncton's object is: "</div><div class="line">    &lt;&lt; sizeof(obj) &lt;&lt; endl;</div><div class="line">  cout &lt;&lt; "The size of ClassWithDataMemberAndFuncton is: " &lt;&lt;</div><div class="line">    sizeof(ClassWithDataMemberAndFuncton) &lt;&lt; endl;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&ensp;&ensp;运行结果仍然是4<br>&ensp;&ensp;这里就很奇怪了，函数似乎不占空间，只有数据成员占空间，我们再添加几个函数试一试：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="comment">/*********************************************************</span></div><div class="line">* @Author: Soyn</div><div class="line">* @FileName: class_with_data_member_and_multi-functions.cc</div><div class="line">* @Brief: class with data member and multi-functions.</div><div class="line">* ********************************************************/</div><div class="line"><span class="keyword">class</span> ClassWithDataMemberAndMultiFunctions&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Func1</span><span class="params">()</span> </span>&#123;<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm Func1()."</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Func2</span><span class="params">()</span> </span>&#123;<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm Func2()."</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Func3</span><span class="params">()</span> </span>&#123;<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm Func3()."</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  <span class="keyword">int</span> val;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></div><div class="line">&#123;</div><div class="line">  ClassWithDataMemberAndMultiFunctions obj;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithDataMemberAndMultiFunctions'object is: "</span></div><div class="line">      &lt;&lt; <span class="keyword">sizeof</span>(obj) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithDataMemberAndMultiFunctions is: "</span></div><div class="line">    &lt;&lt; <span class="keyword">sizeof</span>(ClassWithDataMemberAndMultiFunctions) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&ensp;&ensp;输出结果为：<br><img src="http://octh00z8u.bkt.clouddn.com/3.png" alt="image"></p>
+<p>&ensp;&ensp;<strong>从这里我们可以断定类的大小仅仅受数据成员的影响，增添函数对类和对象的大小没有影响;</strong>但是我这里仅仅讨论了非静态函数，没有讨论虚函数和静态成员，我们再来看看静态成员和虚函数是否对类和成员的大小有影响。</p>
+<p>&ensp;&ensp;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="comment">/******************************************</span></div><div class="line"> * @Author: Soyn</div><div class="line"> * @FileName: class_with_static.cc</div><div class="line"> * @Brief: class with static function</div><div class="line"> * ****************************************/</div><div class="line"></div><div class="line"><span class="keyword">class</span> ClassWithStaticFunction&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">StaticFunc</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm static function from ClassWithVirtualFunction"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></div><div class="line">&#123;</div><div class="line">    ClassWithStaticFunction obj;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithStaticFunction's object is: "</span></div><div class="line">         &lt;&lt; <span class="keyword">sizeof</span>(obj) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"The sizeof ClassWithStaticFunction is: "</span></div><div class="line">         &lt;&lt; <span class="keyword">sizeof</span>(ClassWithStaticFunction);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<p><img src="http://octh00z8u.bkt.clouddn.com/4.png" alt="image"></p>
+<p>&ensp;&ensp;可见静态和非静态成员对类和类对象对大小没有影响，我们来看一看虚函数对类和类对象是否有影响。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line">/******************************************</div><div class="line"> * @Author: Soyn</div><div class="line"> * @FileName: class_with_static.cc</div><div class="line"> * @Brief: class with static function</div><div class="line"> * ****************************************/</div><div class="line"></div><div class="line">class ClassWithVirtualFunction&#123;</div><div class="line">public:</div><div class="line">    virtual void VirtualFunc()</div><div class="line">    &#123;</div><div class="line">        cout &lt;&lt; "I'm static function from</div><div class="line">         ClassWithVirtualFunction";</div><div class="line">    &#125;</div><div class="line">private:</div><div class="line">    int var;</div><div class="line">&#125;;</div><div class="line">int main(int argc, char **argv)</div><div class="line">&#123;</div><div class="line">    ClassWithVirtualFunction obj;</div><div class="line">    cout &lt;&lt; "The size of ClassWithVirtualFunction's object is: "</div><div class="line">         &lt;&lt; sizeof(obj) &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; "The sizeof ClassWithVirtualFunction is: "</div><div class="line">         &lt;&lt; sizeof(ClassWithVirtualFunction);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&ensp;&ensp;运行结果为:</p>
+<p><img src="http://octh00z8u.bkt.clouddn.com/5.png" alt="image"></p>
+<p>&ensp;&ensp;将数据成员去掉之后的结果是8，也就是说虚表指针是8个字节，这里编译器插上了四个字节，做了字节对齐。<br>为了验证我的想法我又添加了一个数据成员。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="comment">/******************************************</span></div><div class="line"> * @Author: Soyn</div><div class="line"> * @FileName: class_with_static.cc</div><div class="line"> * @Brief: class with static function</div><div class="line"> * ****************************************/</div><div class="line"></div><div class="line"><span class="keyword">class</span> ClassWithVirtualFunction&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">VirtualFunc</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm static function from ClassWithVirtualFunction"</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> var;</div><div class="line">    <span class="keyword">int</span> var2;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></div><div class="line">&#123;</div><div class="line">    ClassWithVirtualFunction obj;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of ClassWithVirtualFunction's object is: "</span></div><div class="line">         &lt;&lt; <span class="keyword">sizeof</span>(obj) &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"The sizeof ClassWithVirtualFunction is: "</span></div><div class="line">         &lt;&lt; <span class="keyword">sizeof</span>(ClassWithVirtualFunction);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&ensp;&ensp;运行结果为：</p>
+<p><img src="http://octh00z8u.bkt.clouddn.com/6.png" alt="image"></p>
+<p>从上面可以看出编译器为了字节对齐加入padding字节。</p>
+<p>从上面的代码中我们可以得出结论：</p>
+<ul>
+<li><strong>类中的数据成员会影响类和对象的大小，如果有虚函数的话会多一个虚表指针，虚表指针的大小是8个字节</strong></li>
+<li><strong>在需要字节对齐的时候，编译器会插入多余的字节，按照4个字节对齐，若有虚函数，按照8个字节对齐</strong></li>
+<li><strong>类中的非虚函数的添加或者删除不会影响类和对象的大小（若一开始无虚函数，添加虚函数后会增加虚指针，这时候会影响类和对象的大小）</strong></li>
+<li><strong>一个空的类的大小是1（即使是空的类也可以实例化，编译器会为其插入一个字节）</strong></li>
+<li><strong>类中的函数存在可执行文件的代码段（该类的所有实例共享代码段，不同的实例不同的只是数据成员，<br>  从这里面的设计也可以得知成员函数的添加或者删除是不会影响类和对象和大小）</strong></li>
+</ul>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a><strong>Reference</strong>:</h2><p><a href="http://stackoverflow.com/questions/14347184/c-member-function-and-class-size" target="_blank" rel="external">c++ member function and class size [duplicate]</a><br><a href="http://stackoverflow.com/questions/1501859/why-size-of-class-with-a-member-function-is-1-byte-while-member-function-is-4-b" target="_blank" rel="external">Why Size of Class with a member function is 1 byte..While member function is 4 bytes</a></p>
+<hr>
+<p><strong><em>兴趣遍地都是，坚持和持之以恒才是稀缺的</em></strong></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2016/09/01/changes/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <ul><li><a href="https://github.com/GallenHu/hexo-theme-Dail">Daily Theme</a></li></ul>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/Soyn" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:w604408482@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+              <a href="http://weibo.com/3890138900/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" class="icon icon-weibo" target="_blank">weibo</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <input type="submit" value="GO">
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2016</span>
+    
+      <span class="split">|</span><span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="//cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
