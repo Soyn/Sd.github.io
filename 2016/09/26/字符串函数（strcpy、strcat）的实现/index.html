@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hexo"/>
+      <meta property="og:title" content="字符串函数（strcpy、strcat）的实现"/>
   
   <!--Open Graph Description-->
   
@@ -24,7 +24,7 @@
   <meta property="og:site_name" content="Hexo"/>
   <!--Type page-->
   
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
   
   <!--Page Cover-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Hexo</title>
+  <title>字符串函数（strcpy、strcat）的实现 - Hexo</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -119,11 +119,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            Untitled
+            字符串函数（strcpy、strcat）的实现
             
           </h1>
           <p class="posted-on">
-          2016-09-28
+          2016-09-26
           </p>
           <div class="tags-links">
             
@@ -133,7 +133,7 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <h2 id="title-字符串函数（strcpy、strcat）的实现"><a href="#title-字符串函数（strcpy、strcat）的实现" class="headerlink" title="title:字符串函数（strcpy、strcat）的实现"></a>title:字符串函数（strcpy、strcat）的实现</h2><p>&ensp;&ensp;在面试和笔试的时候经常会遇上面试官让你写strcpy()和strcat()，一眼看上去感觉这个很简单<br>其实没有想象中那么简单，要考虑的东西很多，首先我们来看看C语言中自带的strcpy的功能。<br>首先我们想一下拷贝字符串的过程，有两个字符串的，一个为src，一个为dst，我们需要将src中的字符依次拷到dst<br>中，代码如下：<br><figure class="highlight cc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyStrcpy</span><span class="params">(<span class="keyword">char</span> *dst, <span class="keyword">char</span> *src)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">while</span>((*dst++ = *src++) != <span class="string">'\0'</span>)&#123;</div><div class="line">    ;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+          <p>&ensp;&ensp;在面试和笔试的时候经常会遇上面试官让你写strcpy()和strcat()，一眼看上去感觉这个很简单<br>其实没有想象中那么简单，要考虑的东西很多，首先我们来看看C语言中自带的strcpy的功能。<br>首先我们想一下拷贝字符串的过程，有两个字符串的，一个为src，一个为dst，我们需要将src中的字符依次拷到dst<br>中，代码如下：<br><figure class="highlight cc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyStrcpy</span><span class="params">(<span class="keyword">char</span> *dst, <span class="keyword">char</span> *src)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">while</span>((*dst++ = *src++) != <span class="string">'\0'</span>)&#123;</div><div class="line">    ;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&ensp;&ensp;上面的程序能在面试的时候写出来的话，如果我是面试官，我是不会让面试者过的，代码存在很多问题，<br>没有对字符串检查，也没有防止原字符串被修改，在写一个健壮的strcpy，以下是写strcpy要注意的点：</p>
 <ul>
 <li>要检查dst和src是否为空</li>
