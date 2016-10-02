@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Hexo"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="website" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Hexo</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/Archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Untitled
+            
+          </h1>
+          <p class="posted-on">
+          2016-09-28
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h2 id="title-字符串函数（strcpy、strcat）的实现"><a href="#title-字符串函数（strcpy、strcat）的实现" class="headerlink" title="title:字符串函数（strcpy、strcat）的实现"></a>title:字符串函数（strcpy、strcat）的实现</h2><p>&ensp;&ensp;在面试和笔试的时候经常会遇上面试官让你写strcpy()和strcat()，一眼看上去感觉这个很简单<br>其实没有想象中那么简单，要考虑的东西很多，首先我们来看看C语言中自带的strcpy的功能。<br>首先我们想一下拷贝字符串的过程，有两个字符串的，一个为src，一个为dst，我们需要将src中的字符依次拷到dst<br>中，代码如下：<br><figure class="highlight cc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyStrcpy</span><span class="params">(<span class="keyword">char</span> *dst, <span class="keyword">char</span> *src)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">while</span>((*dst++ = *src++) != <span class="string">'\0'</span>)&#123;</div><div class="line">    ;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>&ensp;&ensp;上面的程序能在面试的时候写出来的话，如果我是面试官，我是不会让面试者过的，代码存在很多问题，<br>没有对字符串检查，也没有防止原字符串被修改，在写一个健壮的strcpy，以下是写strcpy要注意的点：</p>
+<ul>
+<li>要检查dst和src是否为空</li>
+<li>src所指向的内容不能修改，设置为const</li>
+<li>注意字符串要拷贝末尾的’\0’</li>
+<li>在拷贝之前要保存dst指针的值</li>
+<li>因为存在链式赋值，所以要返回先前保存的dst指针<br>&ensp;&ensp;以上是写一个strcpy需要注意的一些问题，正确的代码如下：</li>
+</ul>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">MyStrcpy</span><span class="params">(<span class="keyword">char</span> *dst, <span class="keyword">const</span> <span class="keyword">char</span> *src)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">char</span> *ret = dst;</div><div class="line">  <span class="keyword">while</span>((*dst++ = *src++) != <span class="string">'\0'</span>)&#123;</div><div class="line">    ;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&ensp;&ensp;strncpy的实现也和strcpy的类似，代码如下：</p>
+<figure class="highlight cc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">MyStrcat</span><span class="params">(<span class="keyword">char</span> *dst, <span class="keyword">const</span> <span class="keyword">char</span> *src)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> *ret = dst;</div><div class="line">    <span class="keyword">while</span>(*dst++ != <span class="string">'\0'</span>)&#123;</div><div class="line">      ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">while</span>((*dst++ = *src++) != <span class="string">'\0'</span>)&#123;</div><div class="line">      ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2016/09/24/C++中类和对象的大小/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <ul><li><a href="https://github.com/GallenHu/hexo-theme-Dail">Daily Theme</a></li></ul>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/Soyn" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:w604408482@gmail.com" class="icon icon-mail" target="_blank">mail</a>
+            
+              <a href="http://weibo.com/3890138900/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" class="icon icon-weibo" target="_blank">weibo</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <input type="submit" value="GO">
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2016</span>
+    
+      <span class="split">|</span><span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="//cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
